@@ -34,6 +34,7 @@ function Game(){
 
     this.init = function(){
         this.turn = this.player_list[0];
+        //positions 4,5 give them black/white discs
     }
 
     // this.legalmoves(){
