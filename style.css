@@ -1,5 +1,17 @@
 body {
-    font-size:0px;
+    font-size:0;
+}
+div > h2 {
+    font-size: 40px;
+    display: inline-block;
+    position: relative;
+    left: 290px;
+}
+#back-board{
+    display:inline-block;
+    position:relative;
+    top:60px;
+    left:200px;
 }
 #back-board > div {
     height:50px;
