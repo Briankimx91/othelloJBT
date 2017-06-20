@@ -32,7 +32,7 @@ function Game(){
     //functions down here
 
 
-    this.init(){
+    this.init = function(){
         this.turn = this.player_list[0];
     }
 
