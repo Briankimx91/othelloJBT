@@ -9,26 +9,31 @@ function createObj(){
 var something;
 
 function generateSpots(){
+    var col = ["A","B", "C", "D", "E", "F", "G" ,"H"];
     for (var i = 1; i < 9; i++) {
         $("<div>").attr("id","row"+i).addClass("rows").appendTo("#back-board");
     }
     for(var k = 1; k < 9; k++){
-        for(var j=1; j<9; j++){
-            $("<div>").appendTo("#row"+k);
+        for(var j=0; j<8; j++){
+            $("<div>").addClass(col[j]).appendTo("#row"+k);
         }
     }
 }
 
 function Game(){
+    //player 1 is black
+    //player 2 is white
     var self = this;
     this.num_black = null;
     this.num_white =null;
+    this.player1 =[];
+    this.player2 = [];
     // implement this later on
     // this.timer_value = 30000;
     // this.timer_mode = false;
     this.player_list = ["player 1","player 2"];
     this.turn = null;
-    this.winner = null;
+    this.winner = null;gi
 
     //functions down here
 
@@ -44,23 +49,9 @@ function Game(){
         this.turn = this.player_list[0];
     };
 
-    // this.legalmoves(){
-    //
-    //
-    //     return array; <-- if(array.length==0)
-    //                         you suck func;
-    //                         return;
-    // }
-    //
 
-    // this.clickHandler(){
-    //     if this.turn = black
-    //         then go white
-    //     else
-    //         go black
-    //     flip();
-    // }
-    //
+
+
     this.clickHandler = function() {
         console.log("click is working");
         if (self.turn == self.player_list[0]) { // player 1's turn
@@ -82,10 +73,18 @@ function Game(){
     //
     //
     //
+
     // this.flip(){ //some parameters
     //
+    // if(white)
+    //     remove white
+    //     add black
+    // else
+    //     remove black
+    //     add white
     // }
-    //
+
+
     // this.reset function(){
     //     this.turn = null;
     //     this.num_black =null;
