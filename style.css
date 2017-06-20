@@ -1,21 +1,21 @@
 body {
     font-size:0;
+    width: 1200px;
+    margin: 0 auto;
 }
 div > h2 {
     font-size: 40px;
     display: inline-block;
     position: relative;
-    left: 410px;
+    text-align: center;
 }
 #back-board{
     display:inline-block;
     position:relative;
-    top:20px;
     left:200px;
 }
 #back-board > div {
     height: 80px;
-
 }
 #back-board > div > div {
     background-color:green;
@@ -23,4 +23,19 @@ div > h2 {
     display:inline-block;
     height: 80px;
     width: 80px;
+}
+.game-contents{
+    margin-left: 109px;
+}
+.game-title{
+    text-align: center;
+    font-size: 60px;
+    margin: 40px 0;
+}
+#stats_container{
+    border: 1px solid black;
+    margin-top: 168px;
+    width: 165px;
+    height: 300px;
+    position: fixed;
 }
