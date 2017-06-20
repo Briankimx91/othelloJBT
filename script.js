@@ -33,7 +33,12 @@ function Game(){
 
 
     this.init = function(){
+        $("#row4 div:nth-child(4)").addClass('.white-disk');
+        $("#row4 div:nth-child(5)").addClass('.black-disk');
+        $("#row5 div:nth-child(4)").addClass('.black-disk');
+        $("#row5 div:nth-child(5)").addClass('.white-disk');
         this.turn = this.player_list[0];
+
     }
 
     // this.legalmoves(){
@@ -73,4 +78,5 @@ function Game(){
     // }
 
 }
+
 
