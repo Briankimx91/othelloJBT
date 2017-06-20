@@ -10,7 +10,7 @@ var something;
 
 function generateSpots(){
     for (var i = 1; i < 9; i++) {
-        $("<div>").attr("id","row"+i).appendTo("#back-board");
+        $("<div>").attr("id","row"+i).addClass("rows").appendTo("#back-board");
     }
     for(var k = 1; k < 9; k++){
         for(var j=1; j<9; j++){
@@ -20,7 +20,7 @@ function generateSpots(){
 }
 
 function Game(){
-    this.self = this;
+    var self = this;
     this.num_black = null;
     this.num_white =null;
     // implement this later on
@@ -29,6 +29,7 @@ function Game(){
     this.player_list = ["player 1","player 2"];
     this.turn = null;
     this.winner = null;
+
     //functions down here
 
 
@@ -44,8 +45,14 @@ function Game(){
 
 
         //positions 4,5 give them black/white discs
-
-    }
+        $(".rows > div").click(self.clickHandler);
+        //positions 4,5 give them black/white discs
+        $("#row4 div:nth-child(4)").addClass('white-disc').off("click");
+        $("#row4 div:nth-child(5)").addClass('black-disc').off("click");
+        $("#row5 div:nth-child(4)").addClass('black-disc').off("click");
+        $("#row5 div:nth-child(5)").addClass('white-disc').off("click");
+        this.turn = this.player_list[0];
+    };
 
     // this.legalmoves(){
     //
@@ -55,6 +62,7 @@ function Game(){
     //                         return;
     // }
     //
+
     // this.clickHandler(){
     //     if this.turn = black
     //         then go white
@@ -63,6 +71,19 @@ function Game(){
     //     flip();
     // }
     //
+    this.clickHandler = function() {
+        console.log("click is working");
+        if (self.turn == self.player_list[0]) { // player 1's turn
+            $(this).addClass("black-disc");
+            self.turn = self.player_list[1];
+        }
+        else {
+            $(this).addClass("white-disc");
+            self.turn = self.player_list[0];
+        }
+        $(this).off("click");
+    }
+
     //
     //
     // this.hover//for legal moves
