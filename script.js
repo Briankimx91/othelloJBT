@@ -18,7 +18,7 @@ function generateSpots(){
         $("<div>").attr("id","row"+i).addClass("rows").appendTo("#back-board");
     }
     for(var k = 1; k < 9; k++){
-        for(var j=0; j<8; j++){
+        for(var j=0; j < 8; j++){
             $("<div>").addClass(col[j]).appendTo("#row"+k);
             $("<div>").attr("col",col[j]).appendTo("#row"+k);
             // $("<div>").addClass(col[j]).appendTo("#row"+k);
@@ -109,7 +109,17 @@ function Game(){
 
         //white one later
 
+
     };
+
+
+
+
+
+    }
+
+
+
     this.clickHandler = function() {
         console.log("click is working");
         if (self.turn == self.player_list[0]) { // player 1's turn
@@ -121,7 +131,7 @@ function Game(){
             self.turn = self.player_list[0];
         }
         $(this).off("click");
-    }
+    };
 
     //
     //
