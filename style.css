@@ -1,9 +1,15 @@
-
-
-.white {
-    background-image: url("some thing");
+body {
+    font-size:0px;
 }
+#back-board > div {
+    height:50px;
 
-.black{
-
+}
+#back-board > div > div {
+    background-color:green;
+    border:1px solid black;
+    display:inline-block;
+    height:50px;
+    width:50px;
+>>>>>>> c84f693eb80a0125252651c6b4c47c7653f1e69e
 }
