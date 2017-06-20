@@ -26,7 +26,7 @@ function Game(){
     var self = this;
     this.num_black = null;
     this.num_white =null;
-    this.player1 =[];
+    this.player1 = [];
     this.player2 = [];
     // implement this later on
     // this.timer_value = 30000;
