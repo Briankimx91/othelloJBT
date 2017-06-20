@@ -20,7 +20,7 @@ function generateSpots(){
 }
 
 function Game(){
-    this.self = this;
+    var self = this;
     this.num_black = null;
     this.num_white =null;
     // implement this later on
@@ -29,13 +29,18 @@ function Game(){
     this.player_list = ["player 1","player 2"];
     this.turn = null;
     this.winner = null;
+
     //functions down here
 
 
     this.init = function(){
-        this.turn = this.player_list[0];
-        //positions 4,5 give them black/white discs
         $(".rows > div").click(self.clickHandler);
+        //positions 4,5 give them black/white discs
+        $("#row4 div:nth-child(4)").addClass('white-disc').off("click");
+        $("#row4 div:nth-child(5)").addClass('black-disc').off("click");
+        $("#row5 div:nth-child(4)").addClass('black-disc').off("click");
+        $("#row5 div:nth-child(5)").addClass('white-disc').off("click");
+        this.turn = this.player_list[0];
     }
 
     // this.legalmoves(){
@@ -46,13 +51,20 @@ function Game(){
     //                         return;
     // }
     //
-    this.clickHandler(){
-        if(self.turn == self.player_list[0]){ // player 1's turn
+
+    this.clickHandler = function() {
+        console.log("click is working");
+        if (self.turn == self.player_list[0]) { // player 1's turn
             $(this).addClass("black-disc");
+            self.turn = self.player_list[1];
         }
-        else{
+        else {
             $(this).addClass("white-disc");
+            self.turn = self.player_list[0];
         }
+        $(this).off("click");
+    }
+
     //
     //
     // this.hover//for legal moves
@@ -74,4 +86,5 @@ function Game(){
     // }
 
 }
+
 
