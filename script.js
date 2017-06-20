@@ -109,7 +109,6 @@ function Game(){
 
         //white one later
 
-
     };
     this.clickHandler = function() {
         console.log("click is working");
