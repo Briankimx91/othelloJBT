@@ -46,19 +46,22 @@ div > h2 {
     font-size: 25px;
     font-weight: bold;
 }
+.player-images{
+    width: 150px;
+    height: auto;
+}
 .reset-button{
     margin: 10px;
     font-size: 15px;
     border-radius: 10px;
-
 }
 .white-disc{
     background-image: url(images/white-disc.png);
-    height: 80px;
-    width: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .black-disc{
     background-image: url(images/black-disc.gif);
-    height: 80px;
-    width: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
