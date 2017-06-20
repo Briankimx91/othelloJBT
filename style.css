@@ -1,14 +1,26 @@
 body {
-    font-size:0px;
+    font-size:0;
+}
+div > h2 {
+    font-size: 40px;
+    display: inline-block;
+    position: relative;
+    left: 410px;
+}
+#back-board{
+    display:inline-block;
+    position:relative;
+    top:20px;
+    left:200px;
 }
 #back-board > div {
-    height:50px;
+    height: 80px;
 
 }
 #back-board > div > div {
     background-color:green;
     border:1px solid black;
     display:inline-block;
-    height:50px;
-    width:50px;
+    height: 80px;
+    width: 80px;
 }
