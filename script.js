@@ -53,7 +53,7 @@ function Game(){
 
 
 
-        
+
 
         // return array; <-- if(array.length==0)
         //                     you suck func;
