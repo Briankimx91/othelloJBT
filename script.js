@@ -13,22 +13,16 @@ function createObj(){
 var something;
 
 function generateSpots(){
-<<<<<<< HEAD
-    var col = ["A","B", "C", "D", "E", "F", "G" ,"H"];
-=======
-    // var col = ["A","B", "C", "D", "E", "F", "G" ,"H"];
->>>>>>> 8b0af77b946ab4b0c0e040e7ed2bd27bf4975b9e
+
     for (var i = 1; i < 9; i++) {
         $("<div>").attr("id","row"+i).addClass("rows").appendTo("#back-board");
     }
     for(var k = 1; k < 9; k++){
         for(var j=0; j<8; j++){
-<<<<<<< HEAD
             $("<div>").addClass(col[j]).appendTo("#row"+k);
-=======
             $("<div>").attr("col",col[j]).appendTo("#row"+k);
             // $("<div>").addClass(col[j]).appendTo("#row"+k);
->>>>>>> 8b0af77b946ab4b0c0e040e7ed2bd27bf4975b9e
+
         }
     }
 }
@@ -39,11 +33,8 @@ function Game(){
     var self = this;
     this.num_black = null;
     this.num_white =null;
-<<<<<<< HEAD
     this.player1 = [];
-=======
     this.player1 =[];
->>>>>>> 8b0af77b946ab4b0c0e040e7ed2bd27bf4975b9e
     this.player2 = [];
     // implement this later on
     // this.timer_value = 30000;
@@ -72,17 +63,14 @@ function Game(){
     };
     this.legalmoves = function(){
 
-<<<<<<< HEAD
-
 
         
 
         // return array; <-- if(array.length==0)
         //                     you suck func;
         //                     return;
-    }
+    };
 
-=======
     this.legalMoves = function(){
         //if turn is equal to player1(black){
         // loop through player1 array and look for legal moves around there
@@ -122,10 +110,7 @@ function Game(){
         //white one later
 
 
-    }
-
-
->>>>>>> 8b0af77b946ab4b0c0e040e7ed2bd27bf4975b9e
+    };
     this.clickHandler = function() {
         console.log("click is working");
         if (self.turn == self.player_list[0]) { // player 1's turn
@@ -154,11 +139,11 @@ function Game(){
     //     remove white
     //     add black
     // else
-<<<<<<< HEAD
+
     //     remove black
-=======
+
     //     remove blacck
->>>>>>> 8b0af77b946ab4b0c0e040e7ed2bd27bf4975b9e
+
     //     add white
     // }
 
