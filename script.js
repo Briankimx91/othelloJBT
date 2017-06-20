@@ -33,7 +33,7 @@ function Game(){
     // this.timer_mode = false;
     this.player_list = ["player 1","player 2"];
     this.turn = null;
-    this.winner = null;gi
+    this.winner = null;
 
     //functions down here
 
@@ -48,13 +48,7 @@ function Game(){
         $("#row5 div:nth-child(5)").addClass('white-disc').off("click");
         this.turn = this.player_list[0];
     };
-
-<<<<<<< HEAD
-
-
-
-=======
-    this.legalmoves(){
+    this.legalmoves = function(){
 
 
 
@@ -65,8 +59,6 @@ function Game(){
         //                     return;
     }
 
-
->>>>>>> d25646cbc8bd5ac8fa53a4d09e332ec1d1054132
     this.clickHandler = function() {
         console.log("click is working");
         if (self.turn == self.player_list[0]) { // player 1's turn
