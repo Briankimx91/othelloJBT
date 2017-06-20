@@ -1,0 +1,14 @@
+body {
+    font-size:0px;
+}
+#back-board > div {
+    height:50px;
+
+}
+#back-board > div > div {
+    background-color:green;
+    border:1px solid black;
+    display:inline-block;
+    height:50px;
+    width:50px;
+}
