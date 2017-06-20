@@ -10,7 +10,7 @@ var something;
 
 function generateSpots(){
     for (var i = 1; i < 9; i++) {
-        $("<div>").attr("id","row"+i).appendTo("#back-board");
+        $("<div>").attr("id","row"+i).addClass("rows").appendTo("#back-board");
     }
     for(var k = 1; k < 9; k++){
         for(var j=1; j<9; j++){
@@ -35,6 +35,7 @@ function Game(){
     this.init = function(){
         this.turn = this.player_list[0];
         //positions 4,5 give them black/white discs
+        $(".rows > div").click(self.clickHandler);
     }
 
     // this.legalmoves(){
@@ -45,14 +46,13 @@ function Game(){
     //                         return;
     // }
     //
-    // this.clickhandler(){
-    //     if this.turn = black
-    //         then go white
-    //     else
-    //         go black
-    //     flip();
-    // }
-    //
+    this.clickHandler(){
+        if(self.turn == self.player_list[0]){ // player 1's turn
+            $(this).addClass("black-disc");
+        }
+        else{
+            $(this).addClass("white-disc");
+        }
     //
     //
     // this.hover//for legal moves
