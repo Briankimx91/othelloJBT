@@ -49,9 +49,24 @@ function Game(){
         this.turn = this.player_list[0];
     };
 
+<<<<<<< HEAD
 
 
 
+=======
+    this.legalmoves(){
+
+
+
+        
+
+        // return array; <-- if(array.length==0)
+        //                     you suck func;
+        //                     return;
+    }
+
+
+>>>>>>> d25646cbc8bd5ac8fa53a4d09e332ec1d1054132
     this.clickHandler = function() {
         console.log("click is working");
         if (self.turn == self.player_list[0]) { // player 1's turn
