@@ -35,23 +35,36 @@ div > h2 {
 }
 #stats_container{
     border: 1px solid black;
-    margin-top: 168px;
+    margin-top: 50px;
     width: 165px;
-    height: 300px;
-    position: fixed;
+    height: 520px;
+    position: absolute;
     border-radius: 10px;
+    padding-top: 20px;
+    text-align: center;
 }
 .player-info{
-    margin-left: 10px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
 }
-.player-images{
-    width: 150px;
+.player_one-name,
+.player_two-name {
+    margin: 0 0 10px;
+}
+.value {
+    margin: 0 0 20px;
+}
+#player-imageOne{
+     width: 144px;
+     height: auto;
+ }
+#player-imageTwo{
+    width: 144px;
     height: auto;
+    margin-top: 25px;
 }
 .reset-button{
-    margin: 10px;
+    margin: 10px 0 0;
     font-size: 15px;
     border-radius: 10px;
 }
