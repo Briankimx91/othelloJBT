@@ -30,7 +30,7 @@ function Game(){
     //player 2 is white
     var self = this;
     this.num_black = null;
-    this.num_white =null;
+    this.num_white = null;
     this.player1 =[];
     this.player2 = [];
     // implement this later on
@@ -41,7 +41,6 @@ function Game(){
     this.winner = null;
 
     //functions down here
-
 
     this.init = function(){
         //positions 4,5 give them black/white discs
@@ -97,11 +96,6 @@ function Game(){
 
         //white one later
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8b0af77b946ab4b0c0e040e7ed2bd27bf4975b9e
-
     }
 
 
@@ -147,5 +141,6 @@ function Game(){
     // }
 
 }
+
 
 

@@ -8,23 +8,32 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
+
 <body>
-<h2 class="game-title">Othello Game</h2>
+<h2 class="game-title">Othello: Jedi vs. Sith</h2>
+
 <div class="game-contents">
-    <div id="stats_container">
+
+    <div class="stats_container" id="stats_container1">
         <div class="player-info" id="player1-info">
             <img id="player-imageOne" src="images/jedi.jpg" alt="jedi-player1">
-            <p class="player_one-name">Player 1:</p>
-            <p class="value">/test/</p>
+            <p class="player_one-name">Player 1 / Jedi:</p>
+            <p class="player1-value">t</p>
         </div>
+    </div>
+
+    <div id="back-board"></div>
+
+    <div class="stats_container" id="stats_container2">
         <div class="player-info" id="player2-info">
             <img id="player-imageTwo" src="images/dark_jedi.jpg" alt="darkJedi-player2">
-            <p class="player_two-name">Player 2:</p>
-            <p class="value">/test/</p>
+            <p class="player_two-name">Player 2 / Sith:</p>
+            <p class="player2-value">t</p>
         </div>
-        <button class="reset-button">Reset Game</button>
     </div>
-    <div id="back-board"></div>
+    <div id="reset-button">
+        <button class="reset">RESET</button>
+    </div>
 </div>
 </body>
 </html>
