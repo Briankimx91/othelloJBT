@@ -40,6 +40,9 @@ function Game() {
     this.temp_arr = [];
     //functions down here
 
+    var goodImg = $("#jedi-on");
+    var badImg = $("#sith-on");
+
     this.init = function () {
         //positions 4,5 give them black/white discs
         //mark the four starting positions
@@ -237,7 +240,9 @@ function Game() {
             }
             $(this).off("click");
         }
+        self.symbolAppear();
     };
+
     //
     // this.hover//for legal moves
     //             //show which discs would flip
@@ -273,11 +278,8 @@ function Game() {
             arrayOfFlips[i].removeClass("white-disc black-disc");
             arrayOfFlips[i].addClass(color);
         }
-        self.symbolAppear();
     };
 
-    var goodImg = $("#jedi-on");
-    var badImg = $("#sith-on");
     this.symbolAppear = function(){
         var goodImg = $("#jedi-on");
         var badImg = $("#sith-on");
