@@ -1,80 +1,131 @@
-body {
-    font-size:0;
-    width: 1200px;
-    margin: 0 auto;
+@font-face {
+    font-family: coolFont;
+    src: url(font/coolFont.ttf);
 }
-div > h2 {
-    font-size: 40px;
-    display: inline-block;
-    position: relative;
+@font-face {
+    font-family: badfont;
+    src: url(font/badfont.otf);
+}
+body{
+    font-size: 0;
+    width: 1200px;
+    height: 800px;
+    margin: 0 auto;
+    background-image: url(images/forestbackground.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.game-title{
+    font-family: badFont;
+    font-size: 100px;
+    color: black;
     text-align: center;
+    font-weight: bolder;
+    margin: 40px 0;
+    text-shadow:
+            2px 2px #fff,
+            -2px 2px #fff,
+            2px -2px #fff,
+            -2px -2px #fff,
+            2px 2px 5px #555;
 }
 #back-board{
-    display:inline-block;
-    position:relative;
-    left:200px;
+    display: inline-block;
 }
-#back-board > div {
-    height: 80px;
-}
-#back-board > div > div {
-    background-color:green;
-    border:1px solid black;
-    display:inline-block;
+#back-board > div > div{
+    background-color: green;
+    border: 1px solid black;
+    display: inline-block;
     height: 80px;
     width: 80px;
 }
 .game-contents{
-    margin-left: 109px;
-}
-.game-title{
     text-align: center;
-    font-size: 60px;
-    margin: 40px 0;
-    font-weight: bolder;
 }
-#stats_container{
-    border: 1px solid black;
-    margin-top: 50px;
+.stats_container{
     width: 165px;
-    height: 520px;
-    position: absolute;
+    height: 250px;
+    position: relative;
+    display: inline-block;
     border-radius: 10px;
-    padding-top: 20px;
     text-align: center;
+    padding: 10px;
+    margin: 0 20px;
+    bottom: 128px;
+}
+#stats_container1{
+    bottom: 123px;
 }
 .player-info{
     font-size: 20px;
     font-weight: bold;
 }
 .player_one-name,
-.player_two-name {
-    margin: 0 0 10px;
+.player_two-name{
+    font-family: coolFont;
+    margin: 30px 0 10px;
+    font-size: 40px;
+    text-shadow:
+            1px 1px #fff,
+            -1px 1px #fff,
+            1px -1px #fff,
+            -1px -1px #fff,
+            1px 1px 5px #555;
 }
-.value {
+.player1-value,
+.player2-value{
     margin: 0 0 20px;
+    color: darkred;
+    font-family: coolFont;
+    font-size: 40px;
+    text-shadow:
+            1px 1px #fff,
+            -1px 1px #fff,
+            1px -1px #fff,
+            -1px -1px #fff,
+            1px 1px 5px #555;
 }
-#player-imageOne{
-     width: 144px;
-     height: auto;
- }
-#player-imageTwo{
-    width: 144px;
+#player-imageOne,
+#player-imageTwo {
+    width: 150px;
     height: auto;
-    margin-top: 25px;
+    border: 3px solid black;
+    box-shadow: 0 0 30px 2px whitesmoke;
 }
-.reset-button{
-    margin: 10px 0 0;
-    font-size: 15px;
-    border-radius: 10px;
+#reset-button{
+    margin-top: 30px;
+}
+.reset{
+    width: 200px;
+    height: 50px;
+    border-radius: 30px;
+    font-size: 30px;
+    font-family: coolFont;
+    color: white;
+    background-color: black;
+}
+.reset:hover {
+    background-color: ghostwhite;
+    color: black;
+    text-shadow:
+            1px 1px white,
+            -1px 1px white,
+            1px -1px white,
+            -1px -1px white,
+            1px 1px 5px white;
 }
 .white-disc{
-    background-image: url(images/white-disc.png);
+    background-image: url(images/jedi1.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
 .black-disc{
-    background-image: url(images/black-disc.gif);
-    background-size: contain;
+    background-image: url(images/Sith_Logo.png);
+    background-size: cover;
     background-repeat: no-repeat;
+}
+#jedi-on,
+#sith-on {
+    width: 125px;
+    height: auto;
 }
