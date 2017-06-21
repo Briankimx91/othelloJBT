@@ -23,11 +23,11 @@ body{
     font-weight: bolder;
     margin: 40px 0;
     text-shadow:
-            2px 2px #fff,
-            -2px 2px #fff,
-            2px -2px #fff,
-            -2px -2px #fff,
-            2px 2px 5px #555;
+            6px 6px white,
+            -6px 6px white,
+            6px -6px white,
+            -6px -6px white,
+            6px 6px 9px white;
 }
 #back-board{
     display: inline-block;
@@ -66,11 +66,11 @@ body{
     margin: 30px 0 10px;
     font-size: 40px;
     text-shadow:
-            1px 1px #fff,
-            -1px 1px #fff,
-            1px -1px #fff,
-            -1px -1px #fff,
-            1px 1px 5px #555;
+            3px 3px white,
+            -3px 3px white,
+            3px -3px white,
+            -3px -3px white,
+            3px 3px 5px white;
 }
 .player1-value,
 .player2-value{
@@ -79,11 +79,11 @@ body{
     font-family: coolFont;
     font-size: 40px;
     text-shadow:
-            1px 1px #fff,
-            -1px 1px #fff,
-            1px -1px #fff,
-            -1px -1px #fff,
-            1px 1px 5px #555;
+            2px 2px white,
+            -2px 2px white,
+            2px -2px white,
+            -2px -2px white,
+            2px 2px 5px white;
 }
 #player-imageOne,
 #player-imageTwo {
