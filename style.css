@@ -31,6 +31,7 @@ body{
 }
 #back-board{
     display: inline-block;
+    font-size:10px;
 }
 #back-board > div > div{
     background-color: #27660c;
@@ -132,11 +133,15 @@ body{
 .hiddenClass {
     display: none;
 }
-.blue:hover {
-    background-image: url(images/jay.JPG);
+.blue {
+    background-image: url(images/jaydie.JPG);
     background-size: cover;
     background-repeat: no-repeat;
 }
-.blue:hover:after{
-    display:none;
+.blue:hover {
+    background-image: url(images/jaysith.jpg);
+    background-position: center;
+    -webkit-background-size: contain;
+    background-repeat: no-repeat;
 }
+
