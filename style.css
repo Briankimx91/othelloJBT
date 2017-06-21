@@ -129,6 +129,11 @@ body{
     width: 125px;
     height: auto;
 }
-.hiddenClass{
-    display:none;
+.hiddenClass {
+    display: none;
+}
+.blue{
+    background-image: url(http://content.draftexpress.com/upload/player/large/LonzoBall.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
