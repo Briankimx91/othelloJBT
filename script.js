@@ -22,12 +22,11 @@ function generateSpots(){
         }
     }
 }
+
 function Game() {
     //player 1 is black
     //player 2 is white
     var self = this;
-    this.num_black = null;
-    this.num_white = null;
     this.player1 = [];
     this.player2 = [];
     // implement this later on
@@ -38,12 +37,20 @@ function Game() {
     this.winner = null;
     this.legal_moves_array = [];     //this is for legal moves
 
+
     //functions down here
+
+    var goodImg = $("#jedi-on");
+    var badImg = $("#sith-on");
 
     this.init = function () {
         //positions 4,5 give them black/white discs
-
         //mark the four starting positions
+        $(badImg).removeClass("hiddenClass");
+        console.log("jedi hide");
+        $(goodImg).addClass("hiddenClass");
+        console.log("sith's turn");
+
         this.player2.push(array_list[3][3].addClass('white-disc'));
         this.player1.push(array_list[3][4].addClass('black-disc'));
         this.player1.push(array_list[4][3].addClass('black-disc'));
@@ -53,7 +60,7 @@ function Game() {
         $(".rows > div").click(self.clickHandler);
     };
 
-    this.legalMoves = function (index) {
+    this.legalMoves = function (index) { //brian's fault
         var colNum;
         var rowNum;
         for(var i=0; i<this.legal_moves_array.length; i++){
@@ -173,11 +180,7 @@ function Game() {
             var var1 = diag[i][0];
             var var2 = diag[i][1];
             var check = array_list[diag[i][1] + r] [diag[i][0] + c];
-        /*    if(!check.hasClass(disc_color)){
-
-            }
-            else */
-        if(check.hasClass(disc_color)){
+            if(check.hasClass(disc_color)){
                 temp_diag_directions = [[-1,-1],[1,-1],[-1,1],[1,1]];
 
                 //found adjacent opposite color
@@ -282,8 +285,9 @@ function Game() {
             $(this).off("click");
 
         }
-    }
-
+        self.symbolAppear();
+        self.displayDiscs();
+    };
 
     //
     // this.hover//for legal moves
@@ -310,7 +314,7 @@ function Game() {
                     path.push(brian);
                     temp_directions[j][0] += directions[j][0];
                     temp_directions[j][1] += directions[j][1];
-                     brian = array_list[y + temp_directions[j][1]] [x + temp_directions[j][0]];
+                    brian = array_list[y + temp_directions[j][1]] [x + temp_directions[j][0]];
                     if(brian.hasClass(color)){
                         arrayOfFlips = arrayOfFlips.concat(path);
                     }
@@ -332,9 +336,41 @@ function Game() {
             // array_list.splice(indexToRemove, 1);
             arrayOfFlips[i].removeClass("white-disc black-disc");
             arrayOfFlips[i].addClass(color);
-
-
         }
+    };
+
+    this.symbolAppear = function(){
+        var goodImg = $("#jedi-on");
+        var badImg = $("#sith-on");
+
+        if (self.turn == self.player_list[1]){
+            $(goodImg).removeClass("hiddenClass");
+            console.log("sith step down");
+            $(badImg).addClass("hiddenClass");
+            console.log("jedi's turn");
+        } else if (self.turn == self.player_list[0]){
+            $(badImg).removeClass("hiddenClass");
+            console.log("jedi step down");
+            $(goodImg).addClass("hiddenClass");
+            console.log("sith's turn");
+        }
+    };
+
+    this.gameOVer = function(){
+        this.resetAll();
+    };
+
+    this.displayDiscs = function(){
+        $(".player1-value").html(this.player1.length);
+        $(".player2-value").html(this.player2.length);
+    };
+
+    this.resetAll = function(){
+        console.log("reset is being clicked");
+        this.turn = null;
+        this.num_black = null;
+        this.num_white = null;
+        this.winner = null;
     }
     //some parameters
     //
@@ -352,5 +388,4 @@ function Game() {
     //     this.winner = null;
     //
     // }
-
 }
