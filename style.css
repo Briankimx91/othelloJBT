@@ -131,7 +131,8 @@ body{
 }
 
 .blue{
-    background-image: url(http://content.draftexpress.com/upload/player/large/LonzoBall.jpg);
+    /*background-color: blue!important;*/
+    background-image: url(http://content.draftexpress.com/upload/player/large/LonzoBall.jpg)!important;
     background-size: contain;
     background-repeat: no-repeat;
 }
