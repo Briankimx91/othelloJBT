@@ -100,11 +100,19 @@ body{
     height: 50px;
     border-radius: 30px;
     font-size: 30px;
-    background-color: lightgrey;
+    font-family: coolFont;
+    color: white;
+    background-color: black;
 }
 .reset:hover {
-    background-color: black;
-    color: white;
+    background-color: ghostwhite;
+    color: black;
+    text-shadow:
+            1px 1px white,
+            -1px 1px white,
+            1px -1px white,
+            -1px -1px white,
+            1px 1px 5px white;
 }
 .white-disc{
     background-image: url(images/jedi1.png);
