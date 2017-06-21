@@ -241,6 +241,7 @@ function Game() {
             $(this).off("click");
         }
         self.symbolAppear();
+        self.displayDiscs();
     };
 
     //
@@ -286,12 +287,12 @@ function Game() {
 
         if (self.turn == self.player_list[1]){
             $(goodImg).removeClass("hiddenClass");
-            console.log("jedi's turn");
+            console.log("sith step down");
             $(badImg).addClass("hiddenClass");
-            console.log("sith hide");
+            console.log("jedi's turn");
         } else if (self.turn == self.player_list[0]){
             $(badImg).removeClass("hiddenClass");
-            console.log("jedi hide");
+            console.log("jedi step down");
             $(goodImg).addClass("hiddenClass");
             console.log("sith's turn");
         }
@@ -307,6 +308,7 @@ function Game() {
     };
 
     this.resetAll = function(){
+        console.log("reset is being clicked");
         this.turn = null;
         this.num_black = null;
         this.num_white = null;
