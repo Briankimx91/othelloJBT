@@ -22,25 +22,25 @@ function generateSpots(){
         }
     }
 }
-function Game(){
+function Game() {
     //player 1 is black
     //player 2 is white
     var self = this;
     this.num_black = null;
     this.num_white = null;
-    this.player1 =[];
+    this.player1 = [];
     this.player2 = [];
     // implement this later on
     // this.timer_value = 30000;
     // this.timer_mode = false;
-    this.player_list = ["player 1","player 2"];
+    this.player_list = ["player 1", "player 2"];
     this.turn = null;
     this.winner = null;
     this.temp_arr = [];
 
     //functions down here
 
-    this.init = function(){
+    this.init = function () {
         //positions 4,5 give them black/white discs
 
         //mark the four starting positions
@@ -53,9 +53,9 @@ function Game(){
         $(".rows > div").click(self.clickHandler);
     };
 
-    this.legalMoves = function(index) {
+    this.legalMoves = function (index) {
         //for player 1 - black moves
-        if(index==0){
+        if (index == 0) {
             for (var i = 0; i < this.player2.length; i++) {
                 var colNum = col_list.indexOf(this.player2[i].attr("col"));
                 var rowNum = row_list.indexOf(this.player2[i].parent().attr("id"));
@@ -65,20 +65,20 @@ function Game(){
                     for (var k = -1; k < 2; k++) {    //for columns
                         var selectDiv = array_list[rowNum + j][colNum + k];
                         if (selectDiv.hasClass("white-disc") || selectDiv.hasClass("black-disc")) {
-                            // console.log("selectDiv: ", selectDiv);
+                            continue;
                         }
                         else {
                             for (var b = 0; b < this.player1.length; b++) {
-                                this.horizontal(b, selectDiv, this.player1);
-                                this.vertical(b,selectDiv, this.player1);
-                                // this.diagonal();
+                                this.horizontal(b, selectDiv, this.player1, "white-disc");
+                                this.vertical(b, selectDiv, this.player1, "white-disc");
+                                this.diagonal(b, selectDiv, this.player1, "white-disc");
                             }
                         }
                     }
                 }
             }
         }
-        else{ //for player 2 - white moves
+        else { //for player 2 - white moves
             for (var i = 0; i < this.player1.length; i++) {
                 var colNum = col_list.indexOf(this.player1[i].attr("col"));
                 var rowNum = row_list.indexOf(this.player1[i].parent().attr("id"));
@@ -86,22 +86,25 @@ function Game(){
                     for (var k = -1; k < 2; k++) {    //for columns
                         var selectDiv = array_list[rowNum + j][colNum + k];
                         if (selectDiv.hasClass("white-disc") || selectDiv.hasClass("black-disc")) {
+                            continue;
                         }
                         else {
                             for (var w = 0; w < this.player2.length; w++) {
-                                this.horizontal(w, selectDiv, this.player2);
-                                this.vertical(w,selectDiv, this.player2);
+                                this.horizontal(w, selectDiv, this.player2, "black-disc");
+                                this.vertical(w, selectDiv, this.player2, "black-disc");
+                                this.diagonal(w, selectDiv, this.player2, "black-disc");
                             }
                         }
                     }
                 }
             }
         }
+        // for(var i=0; i<self.temp_arr.length; i++){
+        //     self.temp_arr[i].addClass("blue");
+        // }
     };
 
-
-
-    this.horizontal = function(playerIndex, selectDiv, playerArray){
+    this.horizontal = function (playerIndex, selectDiv, playerArray, disc_color) {
         if (playerArray[playerIndex].attr("row") == selectDiv.attr("row")) {
             var r = selectDiv.attr("row");
             var c = col_list.indexOf(playerArray[playerIndex].attr("col"));
@@ -112,11 +115,11 @@ function Game(){
             var col_diff = Math.abs(col_list.indexOf(playerArray[playerIndex].attr("col")) - col_list.indexOf(selectDiv.attr("col")));
             // console.log("col_diff: " + col_diff);
             if (col_diff > 1) {
-                for(var t = 1; t < col_diff; t++) {
-                    if(!array_list[selectDiv.attr("row") - 1][c + t].hasClass("white-disc") ){
+                for (var t = 1; t < col_diff; t++) {
+                    if (!array_list[selectDiv.attr("row") - 1][c + t].hasClass(disc_color)) {
                         break;
                     }
-                    else if (array_list[selectDiv.attr("row") - 1][c + t].hasClass("white-disc") && t == col_diff-1) {
+                    else if (array_list[selectDiv.attr("row") - 1][c + t].hasClass(disc_color) && t == col_diff - 1) {
                         this.temp_arr.push(selectDiv);
                         console.log(selectDiv);
                     }
@@ -125,21 +128,21 @@ function Game(){
         }
     };
 
-    this.vertical = function(playerIndex ,selectDiv, playerArray){
+    this.vertical = function (playerIndex, selectDiv, playerArray, disc_color) {
         if (playerArray[playerIndex].attr("col") == selectDiv.attr("col")) {
-            var r = selectDiv.attr("row")-1;
+            var r = selectDiv.attr("row") - 1;
             var c = col_list.indexOf(selectDiv.attr("col"));
-            if(r > playerArray[playerIndex].attr("row")-1){
-                r = playerArray[playerIndex].attr("row")-1;
+            if (r > playerArray[playerIndex].attr("row") - 1) {
+                r = playerArray[playerIndex].attr("row") - 1;
             }
             var row_diff = Math.abs(playerArray[playerIndex].attr("row") - selectDiv.attr("row"));
             // console.log("col_diff: " + col_diff);
             if (row_diff > 1) {
-                for(var t = 1; t < row_diff; t++) {
-                    if(!array_list[r+t][c].hasClass("white-disc") ){
+                for (var t = 1; t < row_diff; t++) {
+                    if (!array_list[r + t][c].hasClass(disc_color)) {
                         break;
                     }
-                    else if (array_list[r+t][c].hasClass("white-disc") && t==row_diff-1) {
+                    else if (array_list[r + t][c].hasClass(disc_color) && t == row_diff - 1) {
                         this.temp_arr.push(selectDiv);
                         console.log(selectDiv);
                     }
@@ -148,36 +151,92 @@ function Game(){
         }
     };
 
-    this.diagonal = function(){
-
+    this.diagonal = function (playerIndex, selectDiv, playerArray, disc_color) {
+        var r = selectDiv.attr("row") - 1;
+        var c = selectDiv.attr("col");
+        for (var i = 2; i < 8; i++) {
+            if (selectDiv.attr("row") + i === playerArray[playerIndex].attr("row") && col_list.indexOf(selectDiv.attr("col")) + i === col_list.indexOf(playerArray[playerIndex].attr("col"))) {
+                for (var j = 1; j < i; j++) {
+                    if (!array_list[r + j][c + j].hasClass(disc_color)) {
+                        break;
+                    }
+                    else if (array_list[r + j][c + j].hasClass(disc_color) && t == row_diff - 1) {
+                        this.temp_arr.push(selectDiv);
+                        console.log(selectDiv);
+                        break;
+                    }
+                }
+            }
+            if (selectDiv.attr("row") - i === playerArray[playerIndex].attr("row") && col_list.indexOf(selectDiv.attr("col")) + i === col_list.indexOf(playerArray[playerIndex].attr("col"))) {
+                for (var j = 1; j < i; j++) {
+                    if (!array_list[r - j][c + j].hasClass(disc_color)) {
+                        break;
+                    }
+                    else if (array_list[r - j][c + j].hasClass(disc_color) && t == row_diff - 1) {
+                        this.temp_arr.push(selectDiv);
+                        console.log(selectDiv);
+                        break;
+                    }
+                }
+            }
+            if (selectDiv.attr("row") + i === playerArray[playerIndex].attr("row") && col_list.indexOf(selectDiv.attr("col")) - i === col_list.indexOf(playerArray[playerIndex].attr("col"))) {
+                for (var j = 1; j < i; j++) {
+                    if (!array_list[r + j][c - j].hasClass(disc_color)) {
+                        break;
+                    }
+                    else if (array_list[r + j][c - j].hasClass(disc_color) && t == row_diff - 1) {
+                        this.temp_arr.push(selectDiv);
+                        console.log(selectDiv);
+                        break;
+                    }
+                }
+            }
+            if (selectDiv.attr("row") - i === playerArray[playerIndex].attr("row") && col_list.indexOf(selectDiv.attr("col")) - i === col_list.indexOf(playerArray[playerIndex].attr("col"))) {
+                for (var j = 1; j < i; j++) {
+                    if (!array_list[r - j][c - j].hasClass(disc_color)) {
+                        break;
+                    }
+                    else if (array_list[r - j][c - j].hasClass(disc_color) && t == row_diff - 1) {
+                        this.temp_arr.push(selectDiv);
+                        console.log(selectDiv);
+                        break;
+                    }
+                }
+            }
+        }
     };
 
-    this.clickHandler = function() {
+    this.clickHandler = function () {
         //if(this) isn't in the array: dont do this function
         var bool = false;
         var x = $(this).attr("col");
         var y = $(this).attr("row");
-        for(var i=0; i<self.temp_arr.length; i++){
-            if(self.temp_arr[i].attr("row") == y && self.temp_arr[i].attr("col") == x){
+        var indexofcol = col_list.indexOf(x);
+        for (var i = 0; i < self.temp_arr.length; i++) {
+            if (self.temp_arr[i].attr("row") == y && self.temp_arr[i].attr("col") == x) {
                 bool = true;
             }
         }
-         if(bool){
+        if (bool) {
             console.log("click is working");
             if (self.turn == self.player_list[0]) { // player 1's turn
                 $(this).addClass("black-disc");
+
+
+                self.flip($(this), "black-disc", indexofcol, y-1);
                 self.turn = self.player_list[1];
             }
             else {
                 $(this).addClass("white-disc");
+
+                self.flip($(this), "white-disc", indexofcol, y-1);
                 self.turn = self.player_list[0];
             }
             $(this).off("click");
-         }
+        }
     }
-}
 
-    //
+
     //
     // this.hover//for legal moves
     //             //show which discs would flip
@@ -185,7 +244,27 @@ function Game(){
     //
     //
     //
-    // this.flip(){ //some parameters
+    this.flip = function (inputDiv, color, x, y) {
+        // var i=1;
+        console.log("KHAAAAAAAAAAAAAAAAAAAAAAANh: ",inputDiv);
+        console.log("x: ",x);
+        console.log("y: ",y);
+        var directions = [[-1,-1], [0,-1],[1,-1], [-1,0],[1,0], [-1,1],[0,1], [1,1]];
+        var arrayOfFlips = [];
+        for(var j=0; j<directions.length; j++){
+            var brian = array_list[y + directions[j][1]] [x + directions[j][0]] ;
+            console.log("brian: ", brian);
+            if(brian.hasClass("white-disc")){
+
+            }
+
+        }
+        for (var i = 0; i < arrayOfFlips.length; i++) {
+            arrayofFlips[i].removeClass("white-disc black-disc");
+            arrayofFlips[i].addClass(color);
+        }
+    }
+    //some parameters
     //
     // if(white)
     //     remove white
@@ -202,3 +281,4 @@ function Game(){
     //
     // }
 
+}
