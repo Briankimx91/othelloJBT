@@ -1,6 +1,6 @@
 $(document).ready(createObj);
 var gameObj;
-var row_list = ["row1","row2","row3","row4","row5","row6","row7","row8"]
+// var row_list = ["row1","row2","row3","row4","row5","row6","row7","row8"]
 var col_list = ["A","B", "C", "D", "E", "F", "G" ,"H"];
 var array_list = [[],[],[],[],[],[],[],[]];
 function createObj(){
@@ -34,7 +34,7 @@ function Game() {
     this.player_list = ["player 1", "player 2"];
     this.turn = null;
     this.winner = null;
-    this.temp_arr = [];
+    this.legal_moves_array = [];     //this is for legal moves
     //functions down here
     this.init = function () {
         //positions 4,5 give them black/white discs
@@ -48,16 +48,21 @@ function Game() {
         $(".rows > div").click(self.clickHandler);
     };
     this.legalMoves = function (index) {
+        for(var i=0; i<this.legal_moves_array.length; i++){
+            this.legal_moves_array[i].removeClass("blue");
+        }
+        this.legal_moves_array=[];
         //for player 1 - black moves
         if (index == 0) {
             for (var i = 0; i < this.player2.length; i++) {
                 var colNum = col_list.indexOf(this.player2[i].attr("col"));
-                var rowNum = row_list.indexOf(this.player2[i].parent().attr("id"));
+                var rowNum = this.player2[i].attr("row")-1;
                 // console.log("colNum: " + colNum);
                 // console.log("rowNum: " + rowNum);
                 for (var j = -1; j < 2; j++) {    // for rows
                     for (var k = -1; k < 2; k++) {    //for columns
                         var selectDiv = array_list[rowNum + j][colNum + k];
+                        console.log("selectDiv", selectDiv)
                         if (selectDiv.hasClass("white-disc") || selectDiv.hasClass("black-disc")) {
                             continue;
                         }
@@ -75,7 +80,7 @@ function Game() {
         else { //for player 2 - white moves
             for (var i = 0; i < this.player1.length; i++) {
                 var colNum = col_list.indexOf(this.player1[i].attr("col"));
-                var rowNum = row_list.indexOf(this.player1[i].parent().attr("id"));
+                var rowNum = this.player1[i].attr("row")-1;
                 for (var j = -1; j < 2; j++) {    // for rows
                     for (var k = -1; k < 2; k++) {    //for columns
                         var selectDiv = array_list[rowNum + j][colNum + k];
@@ -93,9 +98,9 @@ function Game() {
                 }
             }
         }
-        // for(var i=0; i<self.temp_arr.length; i++){
-        //     self.temp_arr[i].addClass("blue:hover");
-        // }
+        for(var i=0; i<self.legal_moves_array.length; i++){
+            self.legal_moves_array[i].addClass("blue");
+        }
     };
     this.horizontal = function (playerIndex, selectDiv, playerArray, disc_color) {
         if (playerArray[playerIndex].attr("row") == selectDiv.attr("row")) {
@@ -112,8 +117,8 @@ function Game() {
                     if (!array_list[selectDiv.attr("row") - 1][c + t].hasClass(disc_color)) {
                         break;
                     }
-                    else if (array_list[selectDiv.attr("row") - 1][c + t].hasClass(disc_color) && t == col_diff - 1) {
-                        this.temp_arr.push(selectDiv);
+                    else if (array_list[selectDiv.attr("row") - 1][c + t].hasClass(disc_color) && t === (col_diff-1)) {
+                        this.legal_moves_array.push(selectDiv);
                         console.log(selectDiv);
                     }
                 }
@@ -121,7 +126,7 @@ function Game() {
         }
     };
     this.vertical = function (playerIndex, selectDiv, playerArray, disc_color) {
-        if (playerArray[playerIndex].attr("col") == selectDiv.attr("col")) {
+        if (playerArray[playerIndex].attr("col") === selectDiv.attr("col")) {
             var r = selectDiv.attr("row") - 1;
             var c = col_list.indexOf(selectDiv.attr("col"));
             if (r > playerArray[playerIndex].attr("row") - 1) {
@@ -134,8 +139,8 @@ function Game() {
                     if (!array_list[r + t][c].hasClass(disc_color)) {
                         break;
                     }
-                    else if (array_list[r + t][c].hasClass(disc_color) && t == row_diff - 1) {
-                        this.temp_arr.push(selectDiv);
+                    else if (array_list[r + t][c].hasClass(disc_color) && t === row_diff - 1) {
+                        this.legal_moves_array.push(selectDiv);
                         console.log(selectDiv);
                     }
                 }
@@ -144,27 +149,29 @@ function Game() {
     };
     this.diagonal = function (playerIndex, selectDiv, playerArray, disc_color) {
         var r = selectDiv.attr("row") - 1;
-        var c = selectDiv.attr("col");
+        var c = col_list.indexOf(selectDiv.attr("col"));
         for (var i = 2; i < 8; i++) {
-            if (selectDiv.attr("row") + i === playerArray[playerIndex].attr("row") && col_list.indexOf(selectDiv.attr("col")) + i === col_list.indexOf(playerArray[playerIndex].attr("col"))) {
+            if (selectDiv.attr("row") + i === playerArray[playerIndex].attr("row") &&
+                col_list.indexOf(selectDiv.attr("col")) + i === col_list.indexOf(playerArray[playerIndex].attr("col"))) {
                 for (var j = 1; j < i; j++) {
                     if (!array_list[r + j][c + j].hasClass(disc_color)) {
                         break;
                     }
                     else if (array_list[r + j][c + j].hasClass(disc_color) && t == row_diff - 1) {
-                        this.temp_arr.push(selectDiv);
+                        this.legal_moves_array.push(selectDiv);
                         console.log(selectDiv);
                         break;
                     }
                 }
             }
-            if (selectDiv.attr("row") - i === playerArray[playerIndex].attr("row") && col_list.indexOf(selectDiv.attr("col")) + i === col_list.indexOf(playerArray[playerIndex].attr("col"))) {
+            if (selectDiv.attr("row") - i === playerArray[playerIndex].attr("row") &&
+                col_list.indexOf(selectDiv.attr("col")) + i === col_list.indexOf(playerArray[playerIndex].attr("col"))) {
                 for (var j = 1; j < i; j++) {
                     if (!array_list[r - j][c + j].hasClass(disc_color)) {
                         break;
                     }
                     else if (array_list[r - j][c + j].hasClass(disc_color) && t == row_diff - 1) {
-                        this.temp_arr.push(selectDiv);
+                        this.legal_moves_array.push(selectDiv);
                         console.log(selectDiv);
                         break;
                     }
@@ -176,7 +183,7 @@ function Game() {
                         break;
                     }
                     else if (array_list[r + j][c - j].hasClass(disc_color) && t == row_diff - 1) {
-                        this.temp_arr.push(selectDiv);
+                        this.legal_moves_array.push(selectDiv);
                         console.log(selectDiv);
                         break;
                     }
@@ -188,7 +195,7 @@ function Game() {
                         break;
                     }
                     else if (array_list[r - j][c - j].hasClass(disc_color) && t == row_diff - 1) {
-                        this.temp_arr.push(selectDiv);
+                        this.legal_moves_array.push(selectDiv);
                         console.log(selectDiv);
                         break;
                     }
@@ -202,8 +209,8 @@ function Game() {
         var x = $(this).attr("col");
         var y = $(this).attr("row");
         var indexofcol = col_list.indexOf(x);
-        for (var i = 0; i < self.temp_arr.length; i++) {
-            if (self.temp_arr[i].attr("row") == y && self.temp_arr[i].attr("col") == x) {
+        for (var i = 0; i < self.legal_moves_array.length; i++) {
+            if (self.legal_moves_array[i].attr("row") == y && self.legal_moves_array[i].attr("col") == x) {
                 bool = true;
             }
         }
@@ -213,11 +220,13 @@ function Game() {
                 $(this).addClass("black-disc");
                 self.flip($(this), "black-disc", "white-disc",indexofcol, y-1);
                 self.turn = self.player_list[1];
+                self.legalMoves(1);
             }
             else {
                 $(this).addClass("white-disc");
                 self.flip($(this), "white-disc", "black-disc",indexofcol, y-1);
                 self.turn = self.player_list[0];
+                self.legalMoves(0);
             }
             $(this).off("click");
         }
@@ -237,37 +246,38 @@ function Game() {
         var directions = [[-1,-1], [0,-1],[1,-1], [-1,0],[1,0], [-1,1],[0,1], [1,1]];
         var temp_directions = [[-1,-1], [0,-1],[1,-1], [-1,0],[1,0], [-1,1],[0,1], [1,1]];
         var arrayOfFlips = [];
-        var path = [];
         for(var j=0; j<directions.length; j++){
+            var path = [];
             var brian = array_list[y + directions[j][1]] [x + directions[j][0]] ;
             console.log("brian: ", brian);
             if(brian.hasClass(color_to_replace)){
                 while(brian.hasClass(color_to_replace)){
                     path.push(brian);
-                    temp_directions[j] +=directions[j];
+                    temp_directions[j][0] += directions[j][0];
+                    temp_directions[j][1] += directions[j][1];
                     brian = array_list[y + temp_directions[j][1]] [x + temp_directions[j][0]];
+                    if(brian.hasClass(color)){
+                        arrayOfFlips = arrayOfFlips.concat(path);
+                    }
                 }
             }
         }
         for (var i = 0; i < arrayOfFlips.length; i++) {
-            arrayofFlips[i].removeClass("white-disc black-disc");
-            arrayofFlips[i].addClass(color);
+            // array_list.indexOf(arrayOfFlips[i]);
+            if(color === "black-disc"){
+                var indexToRemove = this.player2.indexOf(arrayOfFlips[i]);
+                this.player2.splice(indexToRemove,1);
+            }
+            else{
+                var indexToRemove = this.player1.indexOf(arrayOfFlips[i]);
+                this.player1.splice(indexToRemove,1);
+            }
+            // array_list.splice(indexToRemove, 1);
+            arrayOfFlips[i].removeClass("white-disc black-disc");
+            arrayOfFlips[i].addClass(color);
         }
     }
-    //some parameters
-    //
-    // if(white)
-    //     remove white
-    //     add black
-    // else
-    //     remove blacck
-    //     add white
-    // }
-    // this.reset function(){
-    //     this.turn = null;
-    //     this.num_black =null;
-    //     this.num_white = null;
-    //     this.winner = null;
-    //
-    // }
+    this.score = function(){
+
+    }
 }
