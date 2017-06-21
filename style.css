@@ -133,9 +133,9 @@ body{
 .hiddenClass {
     display: none;
 }
-.blue {
-    background-image: url(images/jaydie.JPG);
-    background-size: cover;
+.blue{
+    background-image: url(images/jaydie.jpg);
+    background-size: contain;
     background-repeat: no-repeat;
 }
 .blue:hover {
